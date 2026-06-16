@@ -16,3 +16,4 @@ export async function POST(request) {
 
   return NextResponse.json({ id: result.lastInsertRowid }, { status: 201 })
 }
+

@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import db from '@/lib/db'
 
+
+
 export async function GET(request, { params }) {
   const { id } = await params
 
@@ -19,4 +21,14 @@ export async function PATCH(request, { params }) {
 
   const updated = db.prepare('SELECT * FROM tickets WHERE id = ?').get(id)
   return Response.json({ ...updated, id: Number(updated.id) })
+}
+
+export async function DELETE(request, { params }) {
+  const { id } = await params
+
+  // Delete comments first, then the ticket
+  db.prepare('DELETE FROM comments WHERE ticket_id = ?').run(id)
+  db.prepare('DELETE FROM tickets WHERE id = ?').run(id)
+
+  return Response.json({ message: 'Ticket deleted' })
 }

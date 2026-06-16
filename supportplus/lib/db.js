@@ -12,4 +12,14 @@ db.exec(`
   )
 `)
 
+db.exec(`
+  CREATE TABLE IF NOT EXISTS comments (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    ticket_id   INTEGER NOT NULL,
+    content     TEXT NOT NULL,
+    created_at  TEXT DEFAULT (datetime('now')),
+    FOREIGN KEY (ticket_id) REFERENCES tickets (id)
+  )
+`)
+
 export default db

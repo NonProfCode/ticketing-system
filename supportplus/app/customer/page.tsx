@@ -27,6 +27,16 @@ export default function CustomerPage() {
     setTickets(data)
   }
 
+  async function handleDelete(id: number) {
+  if (!confirm('Are you sure you want to delete this ticket?')) return
+
+  await fetch(`/api/tickets/${id}`, {
+    method: 'DELETE'
+  })
+
+  fetchTickets()
+}
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!title || !description) return
