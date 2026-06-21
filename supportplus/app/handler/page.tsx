@@ -200,6 +200,9 @@ export default function HandlerPage() {
                 cursor: 'pointer'
               }}
             >
+              <p style={{ fontSize: '0.72rem', color: '#6b7280', marginTop: '6px', textAlign: 'right' }}>
+  {isExpanded ? '▲ collapse' : '▼ comments'}
+</p>
               {/* Ticket info — your original */}
               <div style={{ flex: 1 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
